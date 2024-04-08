@@ -1,0 +1,35 @@
+name: 'Deploy'
+
+on:
+  push:
+    inputs:
+      branches: ['master']
+env:
+  package-name: "@efebia/sveltekit-adapter-aws"
+jobs:
+  publish:
+    name: 'Publish'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print package name
+        run: echo Publishing ${{ env.package-name }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+          scope: '@efebia'
+      - name: Build package
+        run: |
+          PACKAGE_NAME=${{ env.package-name }}
+          ${{ env.install-script || 'yarn workspaces focus ${PACKAGE_NAME}' }}
+          yarn workspace ${{ env.package-name }} build
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "npmAuthToken: ${NODE_AUTH_TOKEN}" >> .yarnrc.yml
+          yarn workspace ${{ env.package-name }} npm publish

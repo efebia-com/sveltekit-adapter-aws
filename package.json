@@ -17,7 +17,7 @@
     "cdk"
   ],
   "author": "mike.bild@gmail.com",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "bin": {
@@ -41,7 +41,7 @@
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "2.66.0-alpha.0",
     "@sveltejs/kit": "1.8.3",
     "aws-cdk": "2.66.0",
-    "aws-cdk-lib": "2.66.0",
+    "aws-cdk-lib": "2.136.0",
     "constructs": "10.1.257",
     "dotenv": "16.0.3",
     "fs-extra": "11.1.0",

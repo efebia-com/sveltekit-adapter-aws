@@ -26,6 +26,7 @@ export interface AWSAdapterStackProps extends StackProps {
   region?: string;
   serverHandlerPolicies?: PolicyStatement[];
   zoneName?: string;
+  certificate?: string;
 }
 
 export class AWSAdapterStack extends Stack {
@@ -52,7 +53,7 @@ export class AWSAdapterStack extends Stack {
     this.serverHandler = new aws_lambda.Function(this, 'LambdaServerFunctionHandler', {
       code: new aws_lambda.AssetCode(serverPath!),
       handler: 'index.handler',
-      runtime: aws_lambda.Runtime.NODEJS_16_X,
+      runtime: aws_lambda.Runtime.NODEJS_20_X, // TODO update this with new version
       timeout: Duration.minutes(15),
       memorySize,
       logRetention,
@@ -80,7 +81,7 @@ export class AWSAdapterStack extends Stack {
       autoDeleteObjects: true,
     });
 
-    if (process.env.FQDN) {
+    if (process.env.FQDN && !process.env.certificate) {
       this.hostedZone = aws_route53.HostedZone.fromLookup(this, 'HostedZone', {
         domainName,
       }) as aws_route53.HostedZone;
@@ -88,10 +89,12 @@ export class AWSAdapterStack extends Stack {
       this.certificate = new aws_certificatemanager.DnsValidatedCertificate(this, 'DnsValidatedCertificate', {
         domainName: process.env.FQDN!,
         hostedZone: this.hostedZone,
-        region: 'us-east-1',
+        region: props.region || 'eu-west-1',
       });
     }
-
+    if (process.env.certificate) {
+      this.certificate = aws_certificatemanager.Certificate.fromCertificateArn(this, 'Certificate', process.env.certificate);
+    }
     const distribution = new aws_cloudfront.Distribution(this, 'CloudFrontDistribution', {
       priceClass: aws_cloudfront.PriceClass.PRICE_CLASS_100,
       enabled: true,
@@ -100,10 +103,10 @@ export class AWSAdapterStack extends Stack {
       domainNames: process.env.FQDN ? [process.env.FQDN!] : [],
       certificate: process.env.FQDN
         ? aws_certificatemanager.Certificate.fromCertificateArn(
-            this,
-            'DomainCertificate',
-            this.certificate.certificateArn
-          )
+          this,
+          'DomainCertificate',
+          this.certificate.certificateArn
+        )
         : undefined,
       defaultBehavior: {
         compress: true,
@@ -140,7 +143,7 @@ export class AWSAdapterStack extends Stack {
       });
     });
 
-    if (process.env.FQDN) {
+    if (process.env.FQDN && !process.env.certificate) {
       new aws_route53.ARecord(this, 'ARecord', {
         recordName: process.env.FQDN,
         target: aws_route53.RecordTarget.fromAlias(new aws_route53_targets.CloudFrontTarget(distribution)),

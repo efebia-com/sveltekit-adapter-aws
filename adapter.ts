@@ -15,6 +15,7 @@ export interface AWSAdapterProps {
   FQDN?: string;
   LOG_RETENTION_DAYS?: number;
   MEMORY_SIZE?: number;
+  certificate?: string;
   zoneName?: string;
   env?: { [key: string]: string };
 }
@@ -29,6 +30,7 @@ export function adapter({
   LOG_RETENTION_DAYS,
   MEMORY_SIZE,
   zoneName = '',
+  certificate,
   env = {},
 }: AWSAdapterProps = {}) {
   /** @type {import('@sveltejs/kit').Adapter} */
@@ -129,6 +131,7 @@ export function adapter({
                 LOG_RETENTION_DAYS,
                 MEMORY_SIZE,
                 ZONE_NAME: zoneName,
+                certificate
               },
               process.env,
               env
@@ -154,7 +157,7 @@ export function adapter({
 
         updateDotenv({ ...environment.parsed, ...out });
         unlinkSync(join(__dirname, 'cdk.out', 'cdk-env-vars.json'));
-      } catch {}
+      } catch { }
 
       builder.log.minor('AWS-CDK deployment done.');
     },
