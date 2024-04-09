@@ -2,10 +2,9 @@ name: 'Deploy'
 
 on:
   push:
-    inputs:
-      branches: ['master']
+    branches: ['master']
 env:
-  package-name: "@efebia/sveltekit-adapter-aws"
+  package-name: '@efebia/sveltekit-adapter-aws'
 jobs:
   publish:
     name: 'Publish'
