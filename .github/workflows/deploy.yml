@@ -30,4 +30,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "npmAuthToken: ${NODE_AUTH_TOKEN}" >> .yarnrc.yml
-          yarn npm publish
+          yarn publish
