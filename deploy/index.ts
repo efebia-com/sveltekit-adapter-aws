@@ -10,6 +10,6 @@ new AWSAdapterStack(app, process.env.STACKNAME!, {
   zoneName: process.env.ZONE_NAME!,
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: process.env.CDK_DEFAULT_REGION,
+    region: 'eu-west-1',
   },
 });
