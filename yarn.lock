@@ -54,9 +54,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@efebia-com/sveltekit-adapter-aws@workspace:.":
+"@efebia/sveltekit-adapter-aws@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@efebia-com/sveltekit-adapter-aws@workspace:."
+  resolution: "@efebia/sveltekit-adapter-aws@workspace:."
   dependencies:
     "@aws-cdk/aws-apigatewayv2-alpha": 2.66.0-alpha.0
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": 2.66.0-alpha.0
