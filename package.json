@@ -26,7 +26,6 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "publish": "npm publish",
     "format": "prettier --write ."
   },
   "devDependencies": {

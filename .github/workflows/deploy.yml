@@ -30,4 +30,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           printf "\nnpmAuthToken: ${NODE_AUTH_TOKEN}\n" >> .yarnrc.yml
-          yarn  publish
+          yarn publish
