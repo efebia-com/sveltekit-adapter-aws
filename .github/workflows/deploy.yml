@@ -23,12 +23,11 @@ jobs:
           scope: '@efebia'
       - name: Build package
         run: |
-          PACKAGE_NAME=${{ env.package-name }}
-          ${{ env.install-script || 'yarn workspaces focus ${PACKAGE_NAME}' }}
-          yarn workspace ${{ env.package-name }} build
+          ${{ env.install-script || 'yarn ' }}
+          yarn build
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "npmAuthToken: ${NODE_AUTH_TOKEN}" >> .yarnrc.yml
-          yarn workspace ${{ env.package-name }} npm publish
+          yarn npm publish
