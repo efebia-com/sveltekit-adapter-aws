@@ -64,7 +64,7 @@ __metadata:
     "@types/fs-extra": 11.0.1
     "@types/node": 18.14.0
     "@types/node-fetch": 2.6.2
-    aws-cdk: 2.66.0
+    aws-cdk: 2.136.0
     aws-cdk-lib: 2.136.0
     constructs: 10.1.257
     dotenv: 16.0.3
@@ -644,9 +644,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk@npm:2.66.0":
-  version: 2.66.0
-  resolution: "aws-cdk@npm:2.66.0"
+"aws-cdk@npm:2.136.0":
+  version: 2.136.0
+  resolution: "aws-cdk@npm:2.136.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -654,7 +654,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: 5640f80ebd8798a118a80414ca60aa30b5f1c4d65c17369cb2ccb64a0fc6b8ad7841f0f0e7762a2f9df8cbb3f7592216eb7239e300bc80ad2abb0354348f11e5
+  checksum: 8a9a9f911dc624538abfde3732bfacb9b3928225492fdae882c7a8c164ab1de09048d6df46301b108e4de338ff88a25e8fc6186724612e761e61d72d099cc572
   languageName: node
   linkType: hard
 
