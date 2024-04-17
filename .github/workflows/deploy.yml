@@ -7,27 +7,25 @@ jobs:
   publish:
     name: 'Publish'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - name: Print package name
         run: echo Publishing sveltekit-adapter-aws
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com/'
-          scope: '@efebia-com'
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+          scope: '@efebia'
       - name: Build package
         run: |
           yarn
           yarn build
       - name: Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.efebia_npm_publish_pkg }}
         run: |
-          printf "\nnpmAuthToken: ${NODE_AUTH_TOKEN}\n" >> .yarnrc.yml
+          echo "npmAuthToken: ${NODE_AUTH_TOKEN}" >> .yarnrc.yml
           yarn npm publish
