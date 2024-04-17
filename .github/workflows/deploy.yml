@@ -29,5 +29,5 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "npmAuthToken: ${NODE_AUTH_TOKEN}" >> .yarnrc.yml
+          printf "\nnpmAuthToken: ${NODE_AUTH_TOKEN}\n" >> .yarnrc.yml
           yarn  publish
