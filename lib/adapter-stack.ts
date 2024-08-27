@@ -1,24 +1,24 @@
-import { Construct } from 'constructs';
-import {
-  StackProps,
-  Stack,
-  Fn,
-  RemovalPolicy,
-  Duration,
-  CfnOutput,
-  aws_lambda,
-  aws_s3,
-  aws_s3_deployment,
-  aws_cloudfront_origins,
-  aws_certificatemanager,
-  aws_route53,
-  aws_route53_targets,
-  aws_cloudfront,
-} from 'aws-cdk-lib';
 import { CorsHttpMethod, HttpApi, IHttpApi, PayloadFormatVersion } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
-import { config } from 'dotenv';
+import {
+  CfnOutput,
+  Duration,
+  Fn,
+  RemovalPolicy,
+  Stack,
+  StackProps,
+  aws_certificatemanager,
+  aws_cloudfront,
+  aws_cloudfront_origins,
+  aws_lambda,
+  aws_route53,
+  aws_route53_targets,
+  aws_s3,
+  aws_s3_deployment,
+} from 'aws-cdk-lib';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { Construct } from 'constructs';
+import { config } from 'dotenv';
 
 export interface AWSAdapterStackProps extends StackProps {
   FQDN: string;
@@ -126,7 +126,8 @@ export class AWSAdapterStack extends Stack {
             'Access-Control-Request-Headers',
             'Referer',
             'Accept-Language',
-            'Accept-Datetime'
+            'Accept-Datetime',
+            'user-agent'
           ),
         }),
         cachePolicy: aws_cloudfront.CachePolicy.CACHING_DISABLED,
