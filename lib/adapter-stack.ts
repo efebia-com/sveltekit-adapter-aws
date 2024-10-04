@@ -25,7 +25,7 @@ export interface AWSAdapterStackProps extends StackProps {
   account?: string;
   region?: string;
   serverHandlerPolicies?: PolicyStatement[];
-  zoneName?: string;
+  hostedZone?: aws_route53.HostedZoneAttributes;
   certificate?: string;
 }
 
@@ -48,7 +48,6 @@ export class AWSAdapterStack extends Stack {
     const memorySize = parseInt(process.env.MEMORY_SIZE!) || 128;
     const environment = config({ path: projectPath });
     const [_, zoneName, ...MLDs] = process.env.FQDN?.split('.') || [];
-    const domainName = [zoneName, ...MLDs].join(".");
 
     this.serverHandler = new aws_lambda.Function(this, 'LambdaServerFunctionHandler', {
       code: new aws_lambda.AssetCode(serverPath!),
@@ -81,15 +80,13 @@ export class AWSAdapterStack extends Stack {
       autoDeleteObjects: true,
     });
 
-    if (process.env.FQDN && !process.env.certificate) {
-      this.hostedZone = aws_route53.HostedZone.fromLookup(this, 'HostedZone', {
-        domainName,
-      }) as aws_route53.HostedZone;
+    if (process.env.FQDN && props.hostedZone && !process.env.certificate) {
+      this.hostedZone = aws_route53.HostedZone.fromHostedZoneAttributes(this, 'HostedZone', props.hostedZone);
 
       this.certificate = new aws_certificatemanager.DnsValidatedCertificate(this, 'DnsValidatedCertificate', {
         domainName: process.env.FQDN!,
         hostedZone: this.hostedZone,
-        region: props.region || 'eu-west-1',
+        region: 'us-east-1',
       });
     }
     if (process.env.certificate) {

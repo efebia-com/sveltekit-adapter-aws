@@ -1,4 +1,5 @@
 import { copyFileSync, unlinkSync, existsSync, mkdirSync, emptyDirSync, readFileSync } from 'fs-extra';
+import { aws_route53 } from 'aws-cdk-lib';
 import { join, dirname } from 'path';
 import { spawnSync } from 'child_process';
 import * as esbuild from 'esbuild';
@@ -16,7 +17,7 @@ export interface AWSAdapterProps {
   LOG_RETENTION_DAYS?: number;
   MEMORY_SIZE?: number;
   certificate?: string;
-  zoneName?: string;
+  hostedZone?: aws_route53.HostedZoneAttributes,
   env?: { [key: string]: string };
 }
 
@@ -29,7 +30,7 @@ export function adapter({
   FQDN,
   LOG_RETENTION_DAYS,
   MEMORY_SIZE,
-  zoneName = '',
+  hostedZone,
   certificate,
   env = {},
 }: AWSAdapterProps = {}) {
@@ -130,7 +131,8 @@ export function adapter({
                 FQDN,
                 LOG_RETENTION_DAYS,
                 MEMORY_SIZE,
-                ZONE_NAME: zoneName,
+                HOSTED_ZONE_NAME: hostedZone?.zoneName,
+                HOSTED_ZONE_ID: hostedZone?.hostedZoneId,
                 certificate
               },
               process.env,
