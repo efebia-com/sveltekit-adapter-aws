@@ -1,10 +1,10 @@
-import { copyFileSync, unlinkSync, existsSync, mkdirSync, emptyDirSync, readFileSync } from 'fs-extra';
 import { aws_route53 } from 'aws-cdk-lib';
-import { join, dirname } from 'path';
 import { spawnSync } from 'child_process';
-import * as esbuild from 'esbuild';
 import { config } from 'dotenv';
+import * as esbuild from 'esbuild';
 import { writeFileSync } from 'fs';
+import { copyFileSync, emptyDirSync, existsSync, mkdirSync, readFileSync, unlinkSync } from 'fs-extra';
+import { dirname, join } from 'path';
 const updateDotenv = require('update-dotenv');
 
 export interface AWSAdapterProps {
@@ -93,7 +93,7 @@ export function adapter({
             .map((x) => {
               const z = dirname(x);
               if (z === '.') return x;
-              if (z.includes('/')) return undefined;
+              if (z.includes('/')) return `${z.split('/')[0]}/*`;
               return `${z}/*`;
             })
             .filter(Boolean)
@@ -102,9 +102,14 @@ export function adapter({
 
       writeFileSync(join(artifactPath, 'routes.json'), JSON.stringify(routes));
 
+      if (!autoDeploy) {
+        builder.log.minor('Build done.')
+        return
+      }
+
       builder.log.minor('Deploy using AWS-CDK.');
-      autoDeploy &&
-        spawnSync(
+
+      spawnSync(
           'npx',
           [
             'cdk',
