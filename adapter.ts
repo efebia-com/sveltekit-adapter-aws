@@ -1,4 +1,3 @@
-import { Builder } from '@sveltejs/kit';
 import { aws_route53 } from 'aws-cdk-lib';
 import { spawnSync } from 'child_process';
 import { config } from 'dotenv';
@@ -39,7 +38,7 @@ export function adapter({
   /** @type {import('@sveltejs/kit').Adapter} */
   return {
     name: 'adapter-awscdk',
-    async adapt(builder: Builder) {
+    async adapt(builder: any) {
       const environment = config({ path: join(process.cwd(), '.env') });
       emptyDirSync(artifactPath);
 
