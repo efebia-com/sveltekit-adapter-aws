@@ -5,6 +5,7 @@ import * as esbuild from 'esbuild';
 import { writeFileSync } from 'fs';
 import { copyFileSync, emptyDirSync, existsSync, mkdirSync, readFileSync, unlinkSync } from 'fs-extra';
 import { dirname, join } from 'path';
+
 const updateDotenv = require('update-dotenv');
 
 export interface AWSAdapterProps {
@@ -109,7 +110,7 @@ export function adapter({
 
       builder.log.minor('Deploy using AWS-CDK.');
 
-      spawnSync(
+      const spawnedProcess = spawnSync(
           'npx',
           [
             'cdk',
@@ -145,6 +146,11 @@ export function adapter({
             ),
           }
         );
+
+      if (spawnedProcess.stderr?.toString().trim()) {
+        builder.log.error('Deployment failed')
+        throw new Error('AWS CDK Deployment failed')
+      }
 
       try {
         const rawData = readFileSync(join(__dirname, 'cdk.out', 'cdk-env-vars.json')).toString();
