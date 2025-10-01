@@ -17,6 +17,7 @@ export interface AWSAdapterProps {
   FQDN?: string;
   LOG_RETENTION_DAYS?: number;
   MEMORY_SIZE?: number;
+  DEPLOYMENT_MEMORY_SIZE?: number;
   certificate?: string;
   hostedZone?: aws_route53.HostedZoneAttributes,
   env?: { [key: string]: string };
@@ -34,6 +35,7 @@ export function adapter({
   hostedZone,
   certificate,
   env = {},
+  DEPLOYMENT_MEMORY_SIZE
 }: AWSAdapterProps = {}) {
   /** @type {import('@sveltejs/kit').Adapter} */
   return {
@@ -139,7 +141,8 @@ export function adapter({
                 MEMORY_SIZE,
                 HOSTED_ZONE_NAME: hostedZone?.zoneName,
                 HOSTED_ZONE_ID: hostedZone?.hostedZoneId,
-                certificate
+                certificate,
+                DEPLOYMENT_MEMORY_SIZE
               },
               process.env,
               env

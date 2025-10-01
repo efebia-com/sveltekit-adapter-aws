@@ -27,6 +27,7 @@ export interface AWSAdapterStackProps extends StackProps {
   serverHandlerPolicies?: PolicyStatement[];
   hostedZone?: aws_route53.HostedZoneAttributes;
   certificate?: string;
+
 }
 
 export class AWSAdapterStack extends Stack {
@@ -46,6 +47,7 @@ export class AWSAdapterStack extends Stack {
     const prerenderedPath = process.env.PRERENDERED_PATH;
     const logRetention = parseInt(process.env.LOG_RETENTION_DAYS!) || 7;
     const memorySize = parseInt(process.env.MEMORY_SIZE!) || 128;
+    const deploymentMemorySize = parseInt(process.env.DEPLOYMENT_MEMORY_SIZE!) || 128;
     const environment = config({ path: projectPath });
     const [_, zoneName, ...MLDs] = process.env.FQDN?.split('.') || [];
 
@@ -156,6 +158,7 @@ export class AWSAdapterStack extends Stack {
       prune: true,
       distribution,
       distributionPaths: ['/*'],
+      memoryLimit: deploymentMemorySize
     });
 
     new CfnOutput(this, 'appUrl', {
