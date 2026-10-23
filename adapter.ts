@@ -5,8 +5,6 @@ import * as esbuild from 'esbuild';
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 
-const updateDotenv = require('update-dotenv');
-
 export interface AWSAdapterProps {
   artifactPath?: string;
   autoDeploy?: boolean;
@@ -171,7 +169,13 @@ export function adapter({
           {}
         );
 
-        updateDotenv({ ...environment.parsed, ...out });
+        const mergedEnv = { ...environment.parsed, ...out };
+        writeFileSync(
+          join(process.cwd(), '.env'),
+          Object.entries(mergedEnv)
+            .map(([key, value]) => `${key}=${String(value).replace(/\n/g, '\\n')}`)
+            .join('\n')
+        );
         unlinkSync(join(__dirname, 'cdk.out', 'cdk-env-vars.json'));
       } catch { }
 

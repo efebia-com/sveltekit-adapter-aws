@@ -61,7 +61,6 @@ __metadata:
   resolution: "@efebia/sveltekit-adapter-aws@workspace:."
   dependencies:
     "@sveltejs/kit": ^2
-    "@types/fs-extra": 11.0.1
     "@types/node": ^24
     "@types/node-fetch": 2.6.2
     aws-cdk: 2.1146.1
@@ -69,11 +68,9 @@ __metadata:
     constructs: 10.8.1
     dotenv: 16.0.3
     esbuild: 0.17.10
-    fs-extra: 11.1.0
     prettier: 2.8.4
     svelte: 5.57.2
     typescript: ^5.9.3
-    update-dotenv: 1.1.1
     vite: 4.1.4
   bin:
     destroy: bin/destroy.js
@@ -542,25 +539,6 @@ __metadata:
   version: 1.0.9
   resolution: "@types/estree@npm:1.0.9"
   checksum: 752c0afee3ec82b8e24484bf6a27dfa093bbf3de4ef1c20ed0364fb6ad2c0c7971e7504ed9a7aaff103a47e2d945ce7a17f74951743dd944782a0735f53170de
-  languageName: node
-  linkType: hard
-
-"@types/fs-extra@npm:11.0.1":
-  version: 11.0.1
-  resolution: "@types/fs-extra@npm:11.0.1"
-  dependencies:
-    "@types/jsonfile": "*"
-    "@types/node": "*"
-  checksum: 3e930346e5d84f419deb8ced1c582beef8cb20d0bd8a0eb145a37d75bab0572a1895f0e48a0d681d386b3a58b9a992b2d2acecc464bcaec2548f53ea00718651
-  languageName: node
-  linkType: hard
-
-"@types/jsonfile@npm:*":
-  version: 6.1.1
-  resolution: "@types/jsonfile@npm:6.1.1"
-  dependencies:
-    "@types/node": "*"
-  checksum: 0f8fe0a9221a00e8413cffba723dfe16553868724b830237256fb0052ecd5cac96498189d1235a001cfa815f352008261c9ceb373f0aa58227f891e0c7a12c4d
   languageName: node
   linkType: hard
 
@@ -1117,17 +1095,6 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
-  languageName: node
-  linkType: hard
-
-"fs-extra@npm:11.1.0":
-  version: 11.1.0
-  resolution: "fs-extra@npm:11.1.0"
-  dependencies:
-    graceful-fs: ^4.2.0
-    jsonfile: ^6.0.1
-    universalify: ^2.0.0
-  checksum: 5ca476103fa1f5ff4a9b3c4f331548f8a3c1881edaae323a4415d3153b5dc11dc6a981c8d1dd93eec8367ceee27b53f8bd27eecbbf66ffcdd04927510c171e7f
   languageName: node
   linkType: hard
 
@@ -2020,15 +1987,6 @@ __metadata:
   version: 2.0.0
   resolution: "universalify@npm:2.0.0"
   checksum: 2406a4edf4a8830aa6813278bab1f953a8e40f2f63a37873ffa9a3bc8f9745d06cc8e88f3572cb899b7e509013f7f6fcc3e37e8a6d914167a5381d8440518c44
-  languageName: node
-  linkType: hard
-
-"update-dotenv@npm:1.1.1":
-  version: 1.1.1
-  resolution: "update-dotenv@npm:1.1.1"
-  peerDependencies:
-    dotenv: "*"
-  checksum: 0b3a2dd658ca10cd2b50d587bf91d2c8cbd868762dd1a351c9d7e3b11f397fad46765e540e07f26feffdf8b483cf37d9965537ad720a4bcee63a78191250c0c8
   languageName: node
   linkType: hard
 
