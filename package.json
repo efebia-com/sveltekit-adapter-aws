@@ -37,15 +37,13 @@
     "typescript": "4.9.5"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigatewayv2-alpha": "2.66.0-alpha.0",
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "2.66.0-alpha.0",
-    "@sveltejs/kit": "1.8.3",
-    "aws-cdk": "2.136.0",
-    "aws-cdk-lib": "2.136.0",
-    "constructs": "10.1.257",
+    "@sveltejs/kit": "^2",
+    "aws-cdk": "2.1146.1",
+    "aws-cdk-lib": "2.274.0",
+    "constructs": "10.8.1",
     "dotenv": "16.0.3",
     "fs-extra": "11.1.0",
-    "svelte": "3.55.1",
+    "svelte": "5.57.2",
     "update-dotenv": "1.1.1",
     "vite": "4.1.4"
   },
