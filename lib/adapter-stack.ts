@@ -1,5 +1,4 @@
-import { CorsHttpMethod, HttpApi, IHttpApi, PayloadFormatVersion } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+
 import {
   CfnOutput,
   Duration,
@@ -16,6 +15,8 @@ import {
   aws_s3,
   aws_s3_deployment,
 } from 'aws-cdk-lib';
+import { CorsHttpMethod, HttpApi, IHttpApi, PayloadFormatVersion } from 'aws-cdk-lib/aws-apigatewayv2';
+import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 import { config } from 'dotenv';
@@ -54,7 +55,7 @@ export class AWSAdapterStack extends Stack {
     this.serverHandler = new aws_lambda.Function(this, 'LambdaServerFunctionHandler', {
       code: new aws_lambda.AssetCode(serverPath!),
       handler: 'index.handler',
-      runtime: aws_lambda.Runtime.NODEJS_20_X, // TODO update this with new version
+      runtime: aws_lambda.Runtime.NODEJS_24_X,
       timeout: Duration.minutes(15),
       memorySize,
       logRetention,
