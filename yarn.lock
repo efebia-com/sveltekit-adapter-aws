@@ -62,7 +62,7 @@ __metadata:
   dependencies:
     "@sveltejs/kit": ^2
     "@types/fs-extra": 11.0.1
-    "@types/node": 18.14.0
+    "@types/node": ^24
     "@types/node-fetch": 2.6.2
     aws-cdk: 2.1146.1
     aws-cdk-lib: 2.274.0
@@ -581,10 +581,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.14.0":
-  version: 18.14.0
-  resolution: "@types/node@npm:18.14.0"
-  checksum: d83fcf5e4ed544755dd9028f5cbb6b9d46235043159111bb2ad62223729aee581c0144a9f6df8ba73d74011db9ed4ebd7af2fd5e0996714e3beb508a5da8ac5c
+"@types/node@npm:^24":
+  version: 24.19.2
+  resolution: "@types/node@npm:24.19.2"
+  dependencies:
+    undici-types: ">=7.24.0 <7.24.7"
+  checksum: 4afc94122d647e2c4bc794431632d07a67949d9674b73f13898e1f509de41862e841a07e16097965f18d36e93fc4b2c60ecf2304d8440694369e5282969c0481
   languageName: node
   linkType: hard
 
@@ -1986,6 +1988,13 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 8f6260acc86b56bfdda6004bc53f32ea548f543e8baef7071c8e34d29d292f3e375c8416556c8de10b24deef6933cd1c16a8233dc84a3dd43a13a13265d0faab
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:>=7.24.0 <7.24.7":
+  version: 7.24.6
+  resolution: "undici-types@npm:7.24.6"
+  checksum: e79802e37dc472c6324850d938b5df6b9e796f6a1bb5f8ccd24f3a6d17eae94a9cc125506c8b339a3293ffbad81daeba30b843e564c1d237b3c8deafd98b6267
   languageName: node
   linkType: hard
 
