@@ -2,11 +2,8 @@ import { aws_route53 } from 'aws-cdk-lib';
 import { spawnSync } from 'child_process';
 import { config } from 'dotenv';
 import * as esbuild from 'esbuild';
-import { writeFileSync } from 'fs';
-import { copyFileSync, emptyDirSync, existsSync, mkdirSync, readFileSync, unlinkSync } from 'fs-extra';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
-
-const updateDotenv = require('update-dotenv');
 
 export interface AWSAdapterProps {
   artifactPath?: string;
@@ -42,7 +39,8 @@ export function adapter({
     name: 'adapter-awscdk',
     async adapt(builder: any) {
       const environment = config({ path: join(process.cwd(), '.env') });
-      emptyDirSync(artifactPath);
+      rmSync(artifactPath, { recursive: true, force: true });
+      mkdirSync(artifactPath, { recursive: true });
 
       const static_directory = join(artifactPath, 'assets');
       if (!existsSync(static_directory)) {
@@ -171,7 +169,13 @@ export function adapter({
           {}
         );
 
-        updateDotenv({ ...environment.parsed, ...out });
+        const mergedEnv = { ...environment.parsed, ...out };
+        writeFileSync(
+          join(process.cwd(), '.env'),
+          Object.entries(mergedEnv)
+            .map(([key, value]) => `${key}=${String(value).replace(/\n/g, '\\n')}`)
+            .join('\n')
+        );
         unlinkSync(join(__dirname, 'cdk.out', 'cdk-env-vars.json'));
       } catch { }
 

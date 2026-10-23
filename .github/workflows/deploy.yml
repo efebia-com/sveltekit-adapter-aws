@@ -11,9 +11,9 @@ jobs:
       - name: Print package name
         run: echo Publishing sveltekit-adapter-aws
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
