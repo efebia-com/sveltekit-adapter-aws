@@ -150,9 +150,11 @@ export function adapter({
           }
         );
 
-      if (spawnedProcess.stderr?.toString().trim()) {
+      if (spawnedProcess.error || spawnedProcess.status !== 0) {
         builder.log.error('Deployment failed')
-        throw new Error('AWS CDK Deployment failed')
+        throw new Error(
+          `AWS CDK Deployment failed (${spawnedProcess.error?.message ?? `exit code ${spawnedProcess.status}`})`
+        )
       }
 
       try {
