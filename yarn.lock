@@ -63,7 +63,7 @@ __metadata:
     "@sveltejs/kit": ^2
     "@types/node": ^24
     aws-cdk: 2.1146.1
-    aws-cdk-lib: 2.274.0
+    aws-cdk-lib: 2.275.0
     constructs: 10.8.1
     dotenv: 18.0.9
     esbuild: 0.28.2
@@ -615,9 +615,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk-lib@npm:2.274.0":
-  version: 2.274.0
-  resolution: "aws-cdk-lib@npm:2.274.0"
+"aws-cdk-lib@npm:2.275.0":
+  version: 2.275.0
+  resolution: "aws-cdk-lib@npm:2.275.0"
   dependencies:
     "@aws-cdk/asset-awscli-v1": 2.2.292
     "@aws-cdk/asset-node-proxy-agent-v6": ^2.1.3
@@ -636,7 +636,7 @@ __metadata:
     yaml: 1.10.3
   peerDependencies:
     constructs: ^10.5.0
-  checksum: e4086a4cbb1b34a55a1bb83f8614407a86b8ab0a4758ba1ef07e7efb72848630185265da5b9fb1f877f1b05eaa49d4dcd53b232fec7300c60291aa36df86a53f
+  checksum: 4f1dc3e7e714ae2806dff59f4300c2f21ae8154fe0cd6ef7e9ecf8901f828af6c44b1e498aec2de2cb947465111b0519e20cfc20093f0d807becab6ffc7c63f7
   languageName: node
   linkType: hard
 
