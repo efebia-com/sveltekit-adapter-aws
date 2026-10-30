@@ -40,7 +40,7 @@
     "aws-cdk-lib": "2.274.0",
     "constructs": "10.8.1",
     "dotenv": "18.0.9",
-    "svelte": "5.57.2",
+    "svelte": "5.57.3",
     "vite": "8.3.5"
   },
   "packageManager": "yarn@3.3.1"

@@ -68,7 +68,7 @@ __metadata:
     dotenv: 18.0.9
     esbuild: 0.28.2
     prettier: 3.9.10
-    svelte: 5.57.2
+    svelte: 5.57.3
     typescript: ^5.9.3
     vite: 8.3.5
   bin:
@@ -1897,9 +1897,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:5.57.2":
-  version: 5.57.2
-  resolution: "svelte@npm:5.57.2"
+"svelte@npm:5.57.3":
+  version: 5.57.3
+  resolution: "svelte@npm:5.57.3"
   dependencies:
     "@jridgewell/remapping": ^2.3.5
     "@jridgewell/sourcemap-codec": ^1.6.0
@@ -1916,7 +1916,7 @@ __metadata:
     locate-character: ^3.0.0
     magic-string: ^0.30.11
     zimmerframe: ^1.1.2
-  checksum: 9add4d54bc5ec53d84e90b1eef8a1e2871a2a23736ed525efea81d976376cdba8ee7402576ad7b14803b8aa87133fbc80287f98a30ead5a0c413580e263bf79f
+  checksum: 6d6ed40a9cf6eba4eeade8846b0a0e8f27b6ebf1f088ac835bd3c9a00b79a232c1c4f61598d4350dea13e29120598f5cce3ea43c4cf5a5f3d3a3fdcc04c50430
   languageName: node
   linkType: hard
 
