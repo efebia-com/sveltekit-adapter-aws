@@ -41,7 +41,7 @@
     "constructs": "10.8.1",
     "dotenv": "18.0.9",
     "svelte": "5.57.2",
-    "vite": "8.3.5"
+    "vite": "8.3.7"
   },
   "packageManager": "yarn@3.3.1"
 }
